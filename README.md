@@ -32,6 +32,8 @@ It should now report that both `release` and `origin` exist.
 
 7. <a href="https://www.anaconda.com/">Install python on your laptop.</a>
 
+8. <a href="https://github.com/settings/personal-access-tokens">Create a personal access token for this repository,</a> and save it somewhere on your laptop, so you can use it to publish code.
+
 ---------------------------------------------------------------
 
 # Weekly Update
@@ -55,6 +57,7 @@ git add .
 git commit -m "saving changes"
 git push origin main
 ```
+You will need to log in using your github account name.  Instead of a password, use your <a href="https://github.com/settings/personal-access-tokens">personal access token.</a>
 
 #### If git push has an error
 If you've made any changes on your github fork, your `git push` command will fail.  In that case, you should first merge the changes into the local copy on your laptop:
