@@ -16,7 +16,19 @@ def major_chord(f, Fs):
     (2) A major third, i.e., four semitones above f
     (3) A major fifth, i.e., seven semitones above f
     '''
-    raise RuntimeError("You need to write this part")
+    duration = 0.5
+    N = int(Fs * duration)
+    t = np.arange(N) / Fs
+
+    f_root  = f
+    f_third = f * (2 ** (4/12))
+    f_fifth = f * (2 ** (7/12))
+
+    x = ( np.sin(2*np.pi*f_root*t)
+        + np.sin(2*np.pi*f_third*t)
+        + np.sin(2*np.pi*f_fifth*t) )
+
+    return x
 
 def dft_matrix(N):
     '''
@@ -29,7 +41,12 @@ def dft_matrix(N):
     W (NxN array): a matrix of dtype='complex' whose (k,n)^th element is:
            W[k,n] = cos(2*np.pi*k*n/N) - j*sin(2*np.pi*k*n/N)
     '''
-    raise RuntimeError("You need to write this part")
+    n = np.arange(N)
+    k = n.reshape((N,1))
+    angle = 2 * np.pi * k * n / N
+
+    W = np.cos(angle) - 1j*np.sin(angle)
+    return W.astype(complex)
 
 def spectral_analysis(x, Fs):
     '''
@@ -43,5 +60,15 @@ def spectral_analysis(x, Fs):
     f1, f2, f3: The three loudest frequencies (in Hertz)
       These should be sorted so f1 < f2 < f3.
     '''
-    raise RuntimeError("You need to write this part")
+    N = len(x)
+    X = np.fft.fft(x)
+
+    half = N // 2
+    mag = np.abs(X[:half])
+
+    idx = np.argsort(mag)[-3:]
+    freqs = idx * Fs / N
+
+    freqs_sorted = np.sort(freqs)
+    return float(freqs_sorted[0]), float(freqs_sorted[1]), float(freqs_sorted[2])
 
