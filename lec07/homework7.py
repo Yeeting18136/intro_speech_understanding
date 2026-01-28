@@ -60,6 +60,7 @@ def spectral_analysis(x, Fs):
     f1, f2, f3: The three loudest frequencies (in Hertz)
       These should be sorted so f1 < f2 < f3.
     '''
+<<<<<<< HEAD
     N = len(x)
     X = np.fft.fft(x)
 
@@ -72,3 +73,6 @@ def spectral_analysis(x, Fs):
     freqs_sorted = np.sort(freqs)
     return float(freqs_sorted[0]), float(freqs_sorted[1]), float(freqs_sorted[2])
 
+=======
+    raise RuntimeError("You need to write this part")
+>>>>>>> release/main
